@@ -10,12 +10,12 @@ function Read() {
  
   const[apiData, setAPIData ] = useState([]);
   const navigate = useNavigate();
-  const UpdateUser = ({firstName,lastName,checked}) => {
-    localStorage.setItem('ID',id)
+  const UpdateUser = ({firstName,lastName,checked,id}) => {
+    localStorage.setItem('id',id)
     localStorage.setItem('firstName',firstName)
     localStorage.setItem('lastName',lastName)
     localStorage.setItem('checked',checked)
-    useNavigate('/Update')
+    navigate('/Update')
   }
 
   const deleteUser = async(id) =>{
@@ -24,7 +24,7 @@ function Read() {
   }
   const callGetAPI = async() =>{
     const resp = await axios.get(API_URL);
-    setAPIData (resp.data);
+    setAPIData(resp.data);
   }
   useEffect(() =>{
   callGetAPI();
@@ -36,7 +36,6 @@ function Read() {
         <Table.Row>
           <Table.HeaderCell>First Name</Table.HeaderCell>
           <Table.HeaderCell>Last Name</Table.HeaderCell>
-          
           <Table.HeaderCell>Checked</Table.HeaderCell>
           <Table.HeaderCell>Delete</Table.HeaderCell>
           <Table.HeaderCell>Update</Table.HeaderCell>
@@ -44,6 +43,7 @@ function Read() {
 
        </Table.Header>
        <Table.Body>
+       
         {
           apiData.map(data => (
             <Table.Row key ={data.id}>
@@ -59,8 +59,8 @@ function Read() {
             <Table.Cell>
            <Button onClick={() => deleteUser(data.id)}> Delete</Button>
             </Table.Cell>
-            <Table.Cell onClick ={() =>
-             UpdateUser(data.id)} >Update
+            <Table.Cell><Button onClick ={() =>
+             UpdateUser(data.id)}> Update</Button> 
              </Table.Cell>
           </Table.Row>
           ))

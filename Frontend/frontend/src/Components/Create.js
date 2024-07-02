@@ -49,7 +49,7 @@ function Create() {
          & Conditions" />
          <br />
      </Form.Field>
-     <button onClick={postData}> Submit </button>
+     <Button onClick={postData}> Submit </Button>
     </Form>
     
   )

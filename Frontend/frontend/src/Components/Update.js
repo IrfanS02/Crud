@@ -1,6 +1,6 @@
 import { API_URL } from '../Constants/URL';
 import React, {useState , useEffect} from 'react'
-import {Form , Checkbox } from 'semantic-ui-react'
+import {Form ,Button, Checkbox } from 'semantic-ui-react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 function Update() {
@@ -12,8 +12,11 @@ function Update() {
 
   const updateuser = async () =>{
     await axios.put(API_URL + id,{
-      firstName,lastName,Checked
+      firstName,
+      lastName,
+      Checked
     });
+    navigate('/Read');
   }
   useEffect(() =>{
     setId(localStorage.getItem('id'))
@@ -21,9 +24,7 @@ function Update() {
     setLastName(localStorage.getItem('lastName'))
     setChecked(localStorage.getItem('Checked'))
 
-  },
-
-[])
+  },[])
   return (
     <Form className='form'>
     <Form.Field>
@@ -55,7 +56,7 @@ function Update() {
       & Conditions" />
       <br />
   </Form.Field>
-  <button onClick={postData}> Submit </button>
+  <Button onClick={updateuser}>Update</Button>
  </Form>
   )
 }
