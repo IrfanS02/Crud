@@ -7,13 +7,15 @@ import Update from './Update';
 
 
 function Read() {
+ 
   const[apiData, setAPIData ] = useState([]);
+  const navigate = useNavigate();
   const UpdateUser = ({firstName,lastName,checked}) => {
     localStorage.setItem('ID',id)
     localStorage.setItem('firstName',firstName)
     localStorage.setItem('lastName',lastName)
     localStorage.setItem('checked',checked)
-    Navigate('/Update')
+    useNavigate('/Update')
   }
 
   const deleteUser = async(id) =>{
