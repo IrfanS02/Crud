@@ -2,17 +2,21 @@ import axios from 'axios';
 import React, { useState} from 'react'
 import {Form , Button, Checkbox } from 'semantic-ui-react'
 import {API_URL} from '../Constants/URL'
+import {useNavigate} from 'react-router-dom'
 
 function Create() {
      const [firstName, setFirstName] = useState('');
      const [lastName, setLastName] = useState('');
      const [Checked, setChecked] = useState(false);
+     const navigate = useNavigate();
 
      const postData = async() =>{
-        await axios.post(API_URL,{firstName,
+        await axios.post(API_URL,{
+            firstName,
             lastName,
             Checked
         })
+        navigate('/read');
      }
   return (
    <Form className='form'>
@@ -39,10 +43,11 @@ function Create() {
      <Checkbox checked={Checked} 
       onChange={() => setChecked
         (
-           !Checked
+           !Checked 
         )}
         label="Agree the terms
-         & Conditions" /><br />
+         & Conditions" />
+         <br />
      </Form.Field>
      <button onClick={postData}> Submit </button>
     </Form>
